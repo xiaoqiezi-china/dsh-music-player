@@ -1,0 +1,34 @@
+{
+  "name": "dsh-music-player",
+  "version": "0.1.0",
+  "description": "DSH 简约在线音乐播放器:支持网易云/本地音乐源;完整 Agent SKILL(AI 自定义播放器风格/控制播放/播完通知);队列与搜索集成在官方设置页。",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "node --check lib/index.js && node --check lib/client.js",
+    "prepublishOnly": "npm run build",
+    "prepare": "npm run build",
+    "test": "node --check lib/index.js"
+  },
+  "engines": {
+    "dsh": ">=0.0.1",
+    "node": ">=20.0.0"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": ["slots"]
+    }
+  },
+  "files": ["lib", "cordis.patch.yml", "README.md", "LICENSE"],
+  "license": "MIT"
+}

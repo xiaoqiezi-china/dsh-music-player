@@ -1,0 +1,5 @@
+# dsh-music-player bundle patch layer: installable via `dsh plugin add` or by
+# inserting the same entry into the profile's cordis.patch.yml.
+- insert:
+    - id: dsh-music
+      name: 'dsh-music-player'

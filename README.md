@@ -1,2 +1,26 @@
 # dsh-music-player
-为Deepseek-Harness开发的音乐播放插件。允许用户播放本地与网易云音乐。支持通过Cookie解锁VIP歌曲。提供了丰富全面的skill允许Agent控制音乐播放，自定义播放器CSS层叠样式表。允许队列结束后自动通知AI来挑选新的歌曲。
+
+**DSH 简约在线音乐播放器**
+
+支持网易云、本地音乐源。提供完整的 Agent SKILL,允许 AI 自定义播放器风格、控制音乐播放。支持队列结束后主动通知,让 AI 把握每一首歌。轻量、干净,队列与搜索功能集成在官方设置页面。
+
+## 功能
+
+- **悬浮窗播放器**:毛玻璃/发光/逐字歌词/可拖拽进度条/音量控制,卡片常驻挂载(收起不中断播放)
+- **本地音乐**:指定音乐文件夹,队列保存音频路径索引;同名 `.lrc` 自动加载歌词,mp3 内嵌封面自动显示
+- **网易云在线**:搜索/歌词/播放地址(官方 API 优先,被限流时自动降级到备用网关);VIP 歌曲需填写 Cookie
+- **歌单导入**:输入网易云歌单 ID/链接,批量加入队列
+- **播放模式**:循环播放 / 顺序播放(播完一首删一首,播完清空并通知 Agent 添加新歌)
+- **Agent 控制**(12 个工具):搜歌、播新歌、队列增删查、播放控制、播完通知、自定义 CSS 与 UI 配置
+
+## 安装
+
+```sh
+# 首次安装前:pnpm ≥10 默认拒绝执行 git 依赖的构建脚本,
+# 需在 profile 的 pnpm-workspace.yaml 中添加(信任声明,然后重跑安装):
+#   allowBuilds:
+#     dsh-music-player: true
+dsh plugin --profile web add github:xiaoqiezi-china/dsh-music-player
+
+# 建议钉 commit 固定版本(可回滚):
+dsh plugin --profile web add github:xiaoqiezi-china/dsh-music-player#<commit-sha>
